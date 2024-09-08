@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Event handler to load json file
 document.addEventListener('DOMContentLoaded', async () => {
-    data = await (await fetch(`json${window.location.pathname.split('.')[0]}.json`)).json();
+    let pathname = window.location.pathname,
+        position = pathname.lastIndexOf('/');
+    data = await (await fetch(`json${pathname.substring(position).split('.')[0]}.json`)).json();
     if (data.length > 0)
         createUnit(data);
 });
